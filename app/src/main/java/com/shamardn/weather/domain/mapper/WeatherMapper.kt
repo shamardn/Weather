@@ -13,8 +13,8 @@ class WeatherMapper @Inject constructor(
     override fun map(input: WeatherResponse): Weather {
         return Weather(
             currentWeather = input.currentWeatherDTO?.let { currentWeatherMapper.map(it) } ?: CurrentWeather(0,0.0,0,0,0.0,0.0),
-            daily = input.daily?.let { dailyWeatherMapper.mapList(it) } ?: emptyList(),
-            hourly = input.hourly?.let { hourlyWeatherMapper.mapList(it) } ?: emptyList(),
+            daily = dailyWeatherMapper.mapList(input.daily!!),
+            hourly = hourlyWeatherMapper.mapList(input.hourly!!),
             lat = input.lat ?: 0.0,
             lon = input.lon ?: 0.0,
             timezone = input.timezone ?: "",

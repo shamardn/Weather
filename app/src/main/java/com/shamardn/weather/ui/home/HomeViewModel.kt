@@ -1,6 +1,5 @@
-package com.shamardn.weather.ui
+package com.shamardn.weather.ui.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shamardn.weather.domain.usecase.FetchWeatherDetails
@@ -17,11 +16,16 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val fetchWeatherDetails: FetchWeatherDetails,
     private val weatherUiStateMapper: WeatherUiStateMapper,
-): ViewModel() {
+) : ViewModel() {
     private val _state = MutableStateFlow(WeatherUiState())
     val state = _state.asStateFlow()
 
     init {
+        getHomeData()
+    }
+
+    private fun getHomeData() {
+        _state.update { it.copy(isLoading = true) }
         getWeatherDetails()
     }
 
@@ -29,7 +33,6 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val weatherDetails = weatherUiStateMapper.map(fetchWeatherDetails())
-                Log.i("wsh" , " in viewModel : $weatherDetails")
                 _state.update {
                     it.copy(
                         currentWeatherUiState = weatherDetails.currentWeatherUiState,
