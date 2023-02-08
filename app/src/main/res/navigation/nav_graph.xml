@@ -10,4 +10,9 @@
         android:name="com.shamardn.weather.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/dayFragment"
+        android:name="com.shamardn.weather.ui.day.DayFragment"
+        android:label="DayFragment"
+        tools:layout="@layout/fragment_day"/>
 </navigation>

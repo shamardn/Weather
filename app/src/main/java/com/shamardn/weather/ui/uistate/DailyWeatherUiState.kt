@@ -1,13 +1,14 @@
 package com.shamardn.weather.ui.uistate
 
 data class DailyWeatherUiState(
-    val date: Long,
+
+    val date: String = "",
 //    val feelsLike: FeelsLike,
-    val humidity: Int,
-    val pressure: Int,
-    val sunrise: Long,
-    val sunset: Long,
+    val humidity: String = "",
+    val pressure: String = "",
+    val sunrise: String = "",
+    val sunset: String = "",
 //    val temp: Temp,
 //    val weatherCode: List<WeatherCode>,
-    val windSpeed: Double,
+    val windSpeed: String = "",
 )

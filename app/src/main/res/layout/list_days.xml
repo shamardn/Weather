@@ -6,7 +6,7 @@
     <data>
         <variable
             name="adapterRecycler"
-            type="com.shamardn.weather.ui.DaysAdapter" />
+            type="com.shamardn.weather.ui.day.DayAdapter" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

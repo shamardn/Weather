@@ -8,12 +8,12 @@ import javax.inject.Inject
 class DailyWeatherUiStateMapper @Inject constructor(): Mapper<DailyWeather, DailyWeatherUiState>() {
     override fun map(input: DailyWeather): DailyWeatherUiState {
         return DailyWeatherUiState(
-            date = input.date,
-            humidity = input.humidity,
-            pressure = input.pressure,
-            sunrise = input.sunrise,
-            sunset = input.sunset,
-            windSpeed = input.windSpeed,
+            date = "${input.date}",
+            humidity = "${input.humidity}",
+            pressure = "${input.pressure}",
+            sunrise = "${input.sunrise}",
+            sunset = "${input.sunset}",
+            windSpeed = "${input.windSpeed}",
         )
     }
 }

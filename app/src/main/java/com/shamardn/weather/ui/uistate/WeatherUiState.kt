@@ -3,7 +3,7 @@ package com.shamardn.weather.ui.uistate
 data class WeatherUiState(
     val isLoading: Boolean = true,
     val isError: Boolean = false,
-    val currentWeatherUiState: CurrentWeatherUiState = CurrentWeatherUiState(0,"", "", "", "", ""),
+    val currentWeatherUiState: CurrentWeatherUiState = CurrentWeatherUiState("","", "", "", "", ""),
     val dailyUiState: List<DailyWeatherUiState> = emptyList(),
     val hourlyUiState: List<HourlyWeatherUiState> = emptyList(),
     val lat: Double = 0.0,

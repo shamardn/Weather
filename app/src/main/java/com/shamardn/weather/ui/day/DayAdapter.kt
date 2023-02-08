@@ -1,4 +1,4 @@
-package com.shamardn.weather.ui.home
+package com.shamardn.weather.ui.day
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +9,15 @@ import com.shamardn.weather.R
 import com.shamardn.weather.databinding.DailyItemBinding
 import com.shamardn.weather.ui.uistate.DailyWeatherUiState
 
-class HomeAdapter(private val items: List<HomeItem<Any>>) :
-    RecyclerView.Adapter<HomeAdapter.BaseViewHolder>() {
+
+class DayAdapter(private val items: List<DayItem<Any>>) :
+    RecyclerView.Adapter<DayAdapter.BaseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
             VIEW_TYPE_DAY -> {
                 DayViewHolder(
                     LayoutInflater.from(parent.context)
-                        .inflate(R.layout.daily_item, parent, false))
+                    .inflate(R.layout.daily_item, parent, false))
             }
 //            VIEW_TYPE_STATUS -> {
 //                StatusViewHolder(
@@ -69,7 +70,7 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position].type) {
-            HomeItemType.TYPE_DAY -> VIEW_TYPE_DAY
+            DayItemType.TYPE_DAY -> VIEW_TYPE_DAY
         }
     }
 

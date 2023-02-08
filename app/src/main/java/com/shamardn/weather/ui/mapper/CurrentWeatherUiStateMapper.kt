@@ -8,7 +8,7 @@ import javax.inject.Inject
 class CurrentWeatherUiStateMapper @Inject constructor(): Mapper<CurrentWeather, CurrentWeatherUiState>() {
     override fun map(input: CurrentWeather): CurrentWeatherUiState {
         return CurrentWeatherUiState(
-            date = input.date,
+            date = "${input.date}",
             feelsLike = "${input.feelsLike.toInt()}°C",
             humidity = "${input.humidity}%",
             pressure = "${input.pressure} hPa",
