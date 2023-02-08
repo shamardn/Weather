@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shamardn.weather.BR
 import com.shamardn.weather.R
 import com.shamardn.weather.databinding.DailyItemBinding
+import com.shamardn.weather.databinding.HomeHeaderBinding
+import com.shamardn.weather.ui.uistate.CurrentWeatherUiState
 import com.shamardn.weather.ui.uistate.DailyWeatherUiState
 
 class HomeAdapter(private val items: List<HomeItem<Any>>) :
@@ -18,11 +20,11 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
                     LayoutInflater.from(parent.context)
                         .inflate(R.layout.daily_item, parent, false))
             }
-//            VIEW_TYPE_STATUS -> {
-//                StatusViewHolder(
-//                    LayoutInflater.from(parent.context)
-//                    .inflate(R.layout.item_status, parent, false))
-//            }
+            VIEW_TYPE_HEADER -> {
+                HeaderViewHolder(
+                    LayoutInflater.from(parent.context)
+                    .inflate(R.layout.home_header, parent, false))
+            }
 //            VIEW_TYPE_STORIES -> {
 //                StoriesViewHolder(
 //                    LayoutInflater.from(parent.context)
@@ -37,9 +39,9 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
             is DayViewHolder -> {
                 bindDay(holder, position)
             }
-//            is StatusViewHolder -> {
-//                bindStatus(holder, position)
-//            }
+            is HeaderViewHolder -> {
+                bindHeader(holder, position)
+            }
 //            is StoriesViewHolder -> {
 //                bindStories(holder, position)
 //            }
@@ -59,17 +61,16 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
 //        }
 //    }
 
-//    private fun bindStatus(holder: StatusViewHolder, position: Int) {
-//        val status = items[position].item as String
-//        holder.binding.apply {
-//            etStatus.hint = status
-//        }
-//    }
+    private fun bindHeader(holder: HeaderViewHolder, position: Int) {
+        val header = items[position].item as CurrentWeatherUiState
+        holder.binding.setVariable(BR.item,header)
+    }
 
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position].type) {
             HomeItemType.TYPE_DAY -> VIEW_TYPE_DAY
+            HomeItemType.TYPE_HEADER -> VIEW_TYPE_HEADER
         }
     }
 
@@ -81,15 +82,16 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
         val binding = DailyItemBinding.bind(itemView)
     }
 
-//    class StatusViewHolder(itemView: View) : BaseViewHolder(itemView) {
-//        val binding = ItemStatusBinding.bind(itemView)
-//    }
-//
+    class HeaderViewHolder(itemView: View) : BaseViewHolder(itemView) {
+        val binding = HomeHeaderBinding.bind(itemView)
+    }
+
 //    class StoriesViewHolder(itemView: View) : BaseViewHolder(itemView) {
 //        val binding = LayoutStoriesBinding.bind(itemView)
 //    }
 
     companion object {
         private const val VIEW_TYPE_DAY = 1
+        private const val VIEW_TYPE_HEADER = 2
     }
 }

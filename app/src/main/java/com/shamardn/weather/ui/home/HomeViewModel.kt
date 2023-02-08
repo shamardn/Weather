@@ -36,6 +36,7 @@ class HomeViewModel @Inject constructor(
                 _homeState.update {
                     it.copy(
                         dailyList = weatherDetails.dailyUiState,
+                        header = weatherDetails.currentWeatherUiState,
                         isLoading = false,
                         error = emptyList()
                     )

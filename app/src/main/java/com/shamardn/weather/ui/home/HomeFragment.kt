@@ -9,7 +9,6 @@ import com.shamardn.weather.databinding.FragmentHomeBinding
 import com.shamardn.weather.ui.base.BaseFragment
 import com.shamardn.weather.util.toHomeItem
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -26,11 +25,14 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
     private fun collectHomeData() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.homeState.collectLatest {
-                homeList.addAll(
-                    it.dailyList.map { it.toHomeItem() },
-                )
-                setAdapter()
+            viewModel.homeState.collect {
+                if (!it.isLoading){
+                    homeList.add(HomeItem(it.header,HomeItemType.TYPE_HEADER))
+                    homeList.addAll(
+                        it.dailyList.map { it.toHomeItem() },
+                    )
+                    setAdapter()
+                }
             }
         }
     }
