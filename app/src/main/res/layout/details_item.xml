@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="viewModel"
-            type="com.shamardn.weather.ui.home.HomeViewModel" />
+            name="item"
+            type="com.shamardn.weather.ui.uistate.DailyWeatherUiState" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -193,6 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="06:13"
+                android:text="@{item.sunrise}"
                 android:layout_marginStart="16dp"
                 android:textColor="@color/white"
                 android:layout_marginBottom="36dp"
@@ -214,6 +215,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="06:13"
+                android:text="@{item.sunset}"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/white"
                 android:layout_marginBottom="36dp"

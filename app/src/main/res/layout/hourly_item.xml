@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:padding="4dp"
             tools:text="20:00"
-            android:text="@{String.valueOf(item.date)}"
+            android:text="@{item.date}"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"

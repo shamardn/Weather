@@ -27,10 +27,12 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.homeState.collect {
                 if (!it.isLoading){
-                    homeList.add(HomeItem(it.header,HomeItemType.TYPE_HEADER))
+                    homeList.add(HomeItem(it.header, HomeItemType.TYPE_HEADER))
+                    homeList.add(HomeItem(it.hourList, HomeItemType.TYPE_HOUR))
                     homeList.addAll(
                         it.dailyList.map { it.toHomeItem() },
                     )
+                    homeList.add(HomeItem(it.details, HomeItemType.TYPE_DETAILS))
                     setAdapter()
                 }
             }

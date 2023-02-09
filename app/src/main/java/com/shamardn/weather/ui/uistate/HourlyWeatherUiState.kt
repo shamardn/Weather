@@ -1,11 +1,11 @@
 package com.shamardn.weather.ui.uistate
 
 data class HourlyWeatherUiState(
-    val date: Long,
-    val feelsLike: Double,
-    val humidity: Int,
-    val pressure: Int,
-    val temp: Double,
+    val date: String,
+    val feelsLike: String,
+    val humidity: String,
+    val pressure: String,
+    val temp: String,
 //    val weatherCode: List<WeatherCode>,
-    val windSpeed: Double,
+    val windSpeed: String,
 )

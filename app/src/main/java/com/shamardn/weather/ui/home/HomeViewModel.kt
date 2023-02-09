@@ -35,8 +35,10 @@ class HomeViewModel @Inject constructor(
                 val weatherDetails = weatherUiStateMapper.map(fetchWeatherDetails())
                 _homeState.update {
                     it.copy(
-                        dailyList = weatherDetails.dailyUiState,
                         header = weatherDetails.currentWeatherUiState,
+                        hourList = weatherDetails.hourlyUiState,
+                        dailyList = weatherDetails.dailyUiState,
+                        details = weatherDetails.dailyUiState[0],
                         isLoading = false,
                         error = emptyList()
                     )
