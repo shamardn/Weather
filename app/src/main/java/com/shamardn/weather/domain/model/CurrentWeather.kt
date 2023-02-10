@@ -6,6 +6,8 @@ data class CurrentWeather(
     val humidity: Int,
     val pressure: Int,
     val temp: Double,
-//    val weatherCode: List<WeatherCode>,
+    val description: String,
     val windSpeed: Double,
+    val sunrise: Long,
+    val sunset: Long,
 )
