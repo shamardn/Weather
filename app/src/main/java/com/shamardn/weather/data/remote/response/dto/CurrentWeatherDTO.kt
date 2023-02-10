@@ -18,5 +18,8 @@ data class CurrentWeatherDTO(
     @SerializedName("weather")
     val weatherCode: List<WeatherCode?>?,
     @SerializedName("wind_speed")
-    val windSpeed: Double?
+    val windSpeed: Double?,
+    val sunrise: Long?,
+    @SerializedName("sunset")
+    val sunset: Long?,
 )
