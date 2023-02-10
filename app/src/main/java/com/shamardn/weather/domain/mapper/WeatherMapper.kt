@@ -12,7 +12,8 @@ class WeatherMapper @Inject constructor(
 ): Mapper<WeatherResponse, Weather>(){
     override fun map(input: WeatherResponse): Weather {
         return Weather(
-            currentWeather = input.currentWeatherDTO?.let { currentWeatherMapper.map(it) } ?: CurrentWeather(0,0.0,0,0,0.0,0.0),
+            currentWeather = input.currentWeatherDTO?.let { currentWeatherMapper.map(it) } ?: CurrentWeather(0,0.0,0,0,0.0,
+                "", 0.0, 0 , 0),
             daily = dailyWeatherMapper.mapList(input.daily!!),
             hourly = hourlyWeatherMapper.mapList(input.hourly!!),
             lat = input.lat ?: 0.0,
@@ -23,21 +24,3 @@ class WeatherMapper @Inject constructor(
     }
 
 }
-
-/*
-
-class HourlyWeatherMapper @Inject constructor(
-
-): Mapper<HourlyWeatherDTO, HourlyWeather>() {
-    override fun map(input: HourlyWeatherDTO): HourlyWeather {
-        return HourlyWeather(
-            date = input.date ?: 0,
-            feelsLike = input.feelsLike ?: 0.0,
-            humidity = input.humidity ?: 0,
-            pressure = input.pressure ?: 0,
-            temp = input.temp ?: 0.0,
-            windSpeed = input.windSpeed ?: 0.0,
-        )
-    }
-}
- */

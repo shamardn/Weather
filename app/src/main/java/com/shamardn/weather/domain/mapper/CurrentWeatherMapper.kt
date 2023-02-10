@@ -15,6 +15,9 @@ class CurrentWeatherMapper @Inject constructor(
             pressure = input.pressure ?: 0,
             temp = input.temp ?: 0.0,
             windSpeed = input.windSpeed ?: 0.0,
+            description = input.weatherCode?.get(0)?.description ?: "",
+            sunrise = input.sunrise ?: 0,
+            sunset = input.sunset ?: 0,
         )
     }
 }
