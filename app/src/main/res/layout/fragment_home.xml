@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="viewModel"
-            type="com.shamardn.weather.ui.home.HomeViewModel" />
     </data>
 
         <androidx.constraintlayout.widget.ConstraintLayout

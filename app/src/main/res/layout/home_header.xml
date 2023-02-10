@@ -27,15 +27,26 @@
             app:lottie_rawRes="@raw/birds" />
 
         <TextView
+            android:id="@+id/text_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="@string/city_holder"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/text_degree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="96dp"
-            android:fontFamily="sans-serif-light"
             tools:text="25"
             android:text="@{item.temp}"
             android:textColor="@color/white"
-            android:textSize="96sp"
+            android:textSize="112sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +56,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/celsius"
-            android:fontFamily="sans-serif-light"
             android:textColor="@color/light_gray_color"
             android:textSize="48sp"
             app:layout_constraintStart_toEndOf="@+id/text_degree"
@@ -53,9 +63,11 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="sunny"
+            android:text="@{item.description}"
+            android:textAlignment="center"
             android:fontFamily="sans-serif-light"
             android:textColor="@color/white"
             android:textSize="36sp"
