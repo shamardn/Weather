@@ -38,7 +38,7 @@ class HomeViewModel @Inject constructor(
                         header = weatherDetails.currentWeatherUiState,
                         hourList = weatherDetails.hourlyUiState,
                         dailyList = weatherDetails.dailyUiState,
-                        details = weatherDetails.dailyUiState[0],
+                        details = weatherDetails.currentWeatherUiState,
                         isLoading = false,
                         error = emptyList()
                     )

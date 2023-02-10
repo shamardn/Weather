@@ -7,4 +7,6 @@
     <string name="humidity">Humidity</string>
     <string name="wnw">WNW</string>
     <string name="pressure">Pressure</string>
+    <string name="icon_desc">icon of weather status</string>
+    <string name="city_holder">Cairo</string>
 </resources>

@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shamardn.weather.BR
 import com.shamardn.weather.R
-import com.shamardn.weather.databinding.DailyItemBinding
 import com.shamardn.weather.databinding.DetailsItemBinding
 import com.shamardn.weather.databinding.HomeHeaderBinding
+import com.shamardn.weather.databinding.ListDaysBinding
 import com.shamardn.weather.databinding.ListHoursBinding
 import com.shamardn.weather.ui.HoursAdapter
+import com.shamardn.weather.ui.day.DaysAdapter
 import com.shamardn.weather.ui.uistate.CurrentWeatherUiState
 import com.shamardn.weather.ui.uistate.DailyWeatherUiState
 import com.shamardn.weather.ui.uistate.HourlyWeatherUiState
@@ -26,9 +27,9 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
                 )
             }
             VIEW_TYPE_DAY -> {
-                DayViewHolder(
+                DaysViewHolder(
                     LayoutInflater.from(parent.context)
-                        .inflate(R.layout.daily_item, parent, false)
+                        .inflate(R.layout.list_days, parent, false)
                 )
             }
             VIEW_TYPE_HOURS -> {
@@ -49,8 +50,8 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         when (holder) {
-            is DayViewHolder -> {
-                bindDay(holder, position)
+            is DaysViewHolder -> {
+                bindDays(holder, position)
             }
             is HeaderViewHolder -> {
                 bindHeader(holder, position)
@@ -69,9 +70,10 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
         holder.binding.setVariable(BR.item, header)
     }
 
-    private fun bindDay(holder: DayViewHolder, position: Int) {
-        val currentDay = items[position].item as DailyWeatherUiState
-        holder.binding.setVariable(BR.item, currentDay)
+    private fun bindDays(holder: DaysViewHolder, position: Int) {
+        val days = items[position].item as List<DailyWeatherUiState>
+        val daysAdapter = DaysAdapter(days)
+        holder.binding.setVariable(BR.adapterRecycler, daysAdapter)
     }
 
     private fun bindHours(holder: HoursViewHolder, position: Int) {
@@ -81,7 +83,7 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
     }
 
     private fun bindDetails(holder: DetailsViewHolder, position: Int) {
-        val currentDayDetails = items[position].item as DailyWeatherUiState
+        val currentDayDetails = items[position].item as CurrentWeatherUiState
         holder.binding.setVariable(BR.item, currentDayDetails)
     }
 
@@ -102,8 +104,8 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
         val binding = HomeHeaderBinding.bind(itemView)
     }
 
-    class DayViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        val binding = DailyItemBinding.bind(itemView)
+    class DaysViewHolder(itemView: View) : BaseViewHolder(itemView) {
+        val binding = ListDaysBinding.bind(itemView)
     }
 
     class HoursViewHolder(itemView: View) : BaseViewHolder(itemView) {

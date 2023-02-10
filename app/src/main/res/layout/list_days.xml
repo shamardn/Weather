@@ -5,36 +5,29 @@
 
     <data>
 
+        <variable
+            name="adapterRecycler"
+            type="com.shamardn.weather.ui.day.DaysAdapter" />
     </data>
-
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
         android:backgroundTint="@color/blue_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_hourly">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        app:cardElevation="0dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_daily"
+            android:id="@+id/rv_hourly"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
+            android:adapter="@{adapterRecycler}"
             android:clipToPadding="false"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/daily_item"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            tools:listitem="@layout/daily_item" />
     </com.google.android.material.card.MaterialCardView>
+
 </layout>
