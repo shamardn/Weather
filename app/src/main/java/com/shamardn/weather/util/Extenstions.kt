@@ -1,15 +1,9 @@
 package com.shamardn.weather.util
 
-import com.shamardn.weather.ui.day.DayItem
-import com.shamardn.weather.ui.day.DayItemType
-import com.shamardn.weather.ui.home.HomeItem
-import com.shamardn.weather.ui.home.HomeItemType
-import com.shamardn.weather.ui.uistate.DailyWeatherUiState
+import java.util.*
 
-fun DailyWeatherUiState.toDayItem() : DayItem<Any> {
-    return DayItem(this, DayItemType.TYPE_DAY)
-}
-
-fun DailyWeatherUiState.toHomeItem() : HomeItem<Any> {
-    return HomeItem(this, HomeItemType.TYPE_DAY)
+fun Long.formatDate(pattern: String): String{
+    val simpleDateFormat = java.text.SimpleDateFormat(pattern)
+    val date = Date(this * 1000)
+    return simpleDateFormat.format(date)
 }
