@@ -1,4 +1,4 @@
-package com.shamardn.weather.ui.uistate
+package com.shamardn.weather.ui.home.uistate
 
 data class CurrentWeatherUiState(
     val date: String,
@@ -8,6 +8,6 @@ data class CurrentWeatherUiState(
     val temp: String,
     val description: String,
     val windSpeed: String,
-    val sunrise: String = "",
-    val sunset: String = "",
+    val sunrise: String,
+    val sunset: String,
 )

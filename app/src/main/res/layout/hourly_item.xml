@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.shamardn.weather.ui.uistate.HourlyWeatherUiState" />
+            type="com.shamardn.weather.ui.home.uistate.HourlyWeatherUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

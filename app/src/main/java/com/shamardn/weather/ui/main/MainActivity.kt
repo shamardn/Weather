@@ -1,9 +1,10 @@
-package com.shamardn.weather
+package com.shamardn.weather.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
+import com.shamardn.weather.R
 import com.shamardn.weather.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

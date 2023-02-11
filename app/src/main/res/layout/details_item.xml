@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.shamardn.weather.ui.uistate.CurrentWeatherUiState" />
+            type="com.shamardn.weather.ui.home.uistate.CurrentWeatherUiState" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

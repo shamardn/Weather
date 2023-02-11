@@ -1,8 +1,8 @@
-package com.shamardn.weather.ui.mapper
+package com.shamardn.weather.ui.home.mapper
 
 import com.shamardn.weather.domain.mapper.Mapper
 import com.shamardn.weather.domain.model.Weather
-import com.shamardn.weather.ui.uistate.WeatherUiState
+import com.shamardn.weather.ui.home.uistate.WeatherUiState
 import javax.inject.Inject
 
 class WeatherUiStateMapper @Inject constructor(

@@ -3,8 +3,8 @@ package com.shamardn.weather.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shamardn.weather.domain.usecase.FetchWeatherDetails
-import com.shamardn.weather.ui.mapper.WeatherUiStateMapper
-import com.shamardn.weather.ui.uistate.HomeUiState
+import com.shamardn.weather.ui.home.mapper.WeatherUiStateMapper
+import com.shamardn.weather.ui.home.uistate.HomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -39,20 +39,24 @@ class HomeViewModel @Inject constructor(
                         hourList = weatherDetails.hourlyUiState,
                         dailyList = weatherDetails.dailyUiState,
                         details = weatherDetails.currentWeatherUiState,
-                        isLoading = false,
+                        isLoading = true,
                         error = emptyList()
                     )
                 }
             } catch (e: Throwable) {
-                val errors = homeState.value.error.toMutableList()
-                errors.add(e.message.toString())
-                _homeState.update {
-                    it.copy(
-                        error = errors,
-                        isLoading = false,
-                    )
-                }
+                onError(e.message.toString())
             }
+        }
+    }
+
+    private fun onError(message: String) {
+        val errors = _homeState.value.error.toMutableList()
+        errors.add(message)
+        _homeState.update {
+            it.copy(
+                error = errors,
+                isLoading = false,
+            )
         }
     }
 }

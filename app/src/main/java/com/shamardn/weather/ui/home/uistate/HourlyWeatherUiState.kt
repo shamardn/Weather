@@ -1,4 +1,4 @@
-package com.shamardn.weather.ui.uistate
+package com.shamardn.weather.ui.home.uistate
 
 data class HourlyWeatherUiState(
     val date: String,

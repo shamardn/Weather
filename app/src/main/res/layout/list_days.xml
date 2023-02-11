@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
+       <variable
             name="adapterRecycler"
-            type="com.shamardn.weather.ui.day.DaysAdapter" />
+            type="com.shamardn.weather.ui.adapters.DaysAdapter" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

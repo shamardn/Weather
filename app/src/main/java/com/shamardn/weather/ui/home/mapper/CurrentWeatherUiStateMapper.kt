@@ -1,8 +1,8 @@
-package com.shamardn.weather.ui.mapper
+package com.shamardn.weather.ui.home.mapper
 
 import com.shamardn.weather.domain.mapper.Mapper
 import com.shamardn.weather.domain.model.CurrentWeather
-import com.shamardn.weather.ui.uistate.CurrentWeatherUiState
+import com.shamardn.weather.ui.home.uistate.CurrentWeatherUiState
 import com.shamardn.weather.util.formatDate
 import javax.inject.Inject
 

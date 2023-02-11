@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.shamardn.weather.ui.uistate.CurrentWeatherUiState" />
+            type="com.shamardn.weather.ui.home.uistate.CurrentWeatherUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,8 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="sunny"
+            android:gravity="center_horizontal"
             android:text="@{item.description}"
-            android:textAlignment="center"
             android:fontFamily="sans-serif-light"
             android:textColor="@color/white"
             android:textSize="36sp"

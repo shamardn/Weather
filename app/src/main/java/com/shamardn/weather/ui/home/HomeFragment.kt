@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.shamardn.weather.R
 import com.shamardn.weather.databinding.FragmentHomeBinding
+import com.shamardn.weather.ui.adapters.HomeAdapter
 import com.shamardn.weather.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

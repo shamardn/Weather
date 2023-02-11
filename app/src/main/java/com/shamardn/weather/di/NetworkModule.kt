@@ -1,6 +1,6 @@
 package com.shamardn.weather.di
 
-import com.shamardn.weather.Constants
+import com.shamardn.weather.util.Constants
 import com.shamardn.weather.data.remote.interceptor.WeatherInterceptor
 import com.shamardn.weather.data.remote.service.WeatherService
 import dagger.Module

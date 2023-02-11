@@ -1,4 +1,4 @@
-package com.shamardn.weather.ui.home
+package com.shamardn.weather.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +10,15 @@ import com.shamardn.weather.databinding.DetailsItemBinding
 import com.shamardn.weather.databinding.HomeHeaderBinding
 import com.shamardn.weather.databinding.ListDaysBinding
 import com.shamardn.weather.databinding.ListHoursBinding
-import com.shamardn.weather.ui.HoursAdapter
-import com.shamardn.weather.ui.day.DaysAdapter
-import com.shamardn.weather.ui.uistate.CurrentWeatherUiState
-import com.shamardn.weather.ui.uistate.DailyWeatherUiState
-import com.shamardn.weather.ui.uistate.HourlyWeatherUiState
+import com.shamardn.weather.ui.home.HomeItem
+import com.shamardn.weather.ui.home.HomeItemType
+import com.shamardn.weather.ui.home.uistate.CurrentWeatherUiState
+import com.shamardn.weather.ui.home.uistate.DailyWeatherUiState
+import com.shamardn.weather.ui.home.uistate.HourlyWeatherUiState
 
 class HomeAdapter(private val items: List<HomeItem<Any>>) :
     RecyclerView.Adapter<HomeAdapter.BaseViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
             VIEW_TYPE_HEADER -> {
