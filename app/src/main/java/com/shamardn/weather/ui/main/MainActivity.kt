@@ -2,6 +2,7 @@ package com.shamardn.weather.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import com.shamardn.weather.R
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_fragment_container_view) as NavHostFragment

@@ -13,4 +13,10 @@
         <item name="android:statusBarColor">@color/background_color</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Weather.SplashScreen" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.Weather</item>
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/weather_icon</item>
+    </style>
 </resources>
