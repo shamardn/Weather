@@ -9,6 +9,7 @@ import com.shamardn.weather.databinding.FragmentHomeBinding
 import com.shamardn.weather.ui.adapters.HomeAdapter
 import com.shamardn.weather.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -33,7 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             homeList.add(HomeItem(it.dailyUiState, HomeItemType.TYPE_DAY))
                             homeList.add(HomeItem(it.currentWeatherUiState, HomeItemType.TYPE_DETAILS))
                             setAdapter()
-
+                            delay(2000)
                             binding.loading.visibility = View.GONE
                             binding.error.visibility = View.GONE
                             binding.rvHome.visibility = View.VISIBLE

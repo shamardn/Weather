@@ -11,7 +11,7 @@ class HourlyWeatherUiStateMapper @Inject constructor() :
     override fun map(input: HourlyWeather): HourlyWeatherUiState {
         return HourlyWeatherUiState(
             date = input.date.formatDate("HH:mm"),
-            temp = "${input.temp}",
+            temp = "${input.temp.toInt()}°C",
             icon = input.icon,
         )
     }

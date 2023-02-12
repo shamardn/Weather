@@ -6,9 +6,9 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
 @BindingAdapter(value = ["app:imageUrl"])
-fun setImageFromUrl(view: ImageView, url: String?) {
+fun ImageView.setImageFromUrl(url: String?) {
     val defaultIcon = Constants.URL_IMAGE + url + Constants.IMAGE_EXTENSION
-    Glide.with(view).load(defaultIcon).into(view)
+    Glide.with(this).load(defaultIcon).into(this)
 }
 
 @BindingAdapter(value = ["app:showIfSuccess"])

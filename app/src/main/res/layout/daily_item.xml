@@ -59,8 +59,8 @@
 
         <TextView
             android:id="@+id/text_low_degree"
-            android:layout_width="22dp"
-            android:layout_height="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             tools:text="15"
             android:text="@{item.min}"
@@ -74,8 +74,8 @@
 
         <TextView
             android:id="@+id/text_high_degree"
-            android:layout_width="22dp"
-            android:layout_height="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             tools:text="25"
             android:text="@{item.max}"

@@ -11,8 +11,8 @@ class DailyWeatherUiStateMapper @Inject constructor(): Mapper<DailyWeather, Dail
         return DailyWeatherUiState(
             date = input.date.formatDate("MMM, dd"),
             day = input.date.formatDate("EEE"),
-            max = "${input.max.toInt()}",
-            min = "${input.min.toInt()}",
+            max = "${input.max.toInt()}°C",
+            min = "${input.min.toInt()}°C",
             icon = input.icon,
         )
     }
