@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shamardn.weather.domain.usecase.FetchWeatherDetails
 import com.shamardn.weather.ui.home.mapper.WeatherUiStateMapper
-import com.shamardn.weather.ui.home.uistate.HomeUiState
+import com.shamardn.weather.ui.home.uistate.WeatherUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,15 +17,14 @@ class HomeViewModel @Inject constructor(
     private val fetchWeatherDetails: FetchWeatherDetails,
     private val weatherUiStateMapper: WeatherUiStateMapper,
 ) : ViewModel() {
-    private val _homeState = MutableStateFlow(HomeUiState())
-    val homeState = _homeState.asStateFlow()
-
+    private val _homeUiState = MutableStateFlow(WeatherUiState())
+    val homeState = _homeUiState.asStateFlow()
     init {
         getHomeData()
     }
 
     private fun getHomeData() {
-        _homeState.update { it.copy(isLoading = true) }
+        _homeUiState.update { it.copy(isLoading = true) }
         getWeatherDetails()
     }
 
@@ -33,16 +32,17 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val weatherDetails = weatherUiStateMapper.map(fetchWeatherDetails())
-                _homeState.update {
+                _homeUiState.update {
                     it.copy(
-                        header = weatherDetails.currentWeatherUiState,
-                        hourList = weatherDetails.hourlyUiState,
-                        dailyList = weatherDetails.dailyUiState,
-                        details = weatherDetails.currentWeatherUiState,
-                        isLoading = true,
-                        error = emptyList()
+                        currentWeatherUiState = weatherDetails.currentWeatherUiState,
+                        hourlyUiState = weatherDetails.hourlyUiState,
+                        dailyUiState = weatherDetails.dailyUiState,
+                        isSuccess = true,
+                        isLoading = false,
+                        isFailed = false,
                     )
                 }
+
             } catch (e: Throwable) {
                 onError(e.message.toString())
             }
@@ -50,12 +50,13 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun onError(message: String) {
-        val errors = _homeState.value.error.toMutableList()
+        val errors = _homeUiState.value.error.toMutableList()
         errors.add(message)
-        _homeState.update {
+        _homeUiState.update {
             it.copy(
                 error = errors,
                 isLoading = false,
+                isFailed = true,
             )
         }
     }

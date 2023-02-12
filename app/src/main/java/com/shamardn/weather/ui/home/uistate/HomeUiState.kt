@@ -1,10 +1,9 @@
 package com.shamardn.weather.ui.home.uistate
 
-data class HomeUiState (
-    val dailyList: List<DailyWeatherUiState> = emptyList(),
-    val header: CurrentWeatherUiState = CurrentWeatherUiState("","","","","", "","","",""),
-    val hourList: List<HourlyWeatherUiState> = emptyList(),
-    val details: CurrentWeatherUiState = CurrentWeatherUiState("","","","","","", "","",""),
-    val isLoading: Boolean = false,
-    val error : List<String> = emptyList(),
-)
+
+sealed class HomeUiState{
+    object Success: HomeUiState()
+    data class Error(val message: String): HomeUiState()
+    object Loading: HomeUiState()
+    object Empty: HomeUiState()
+}

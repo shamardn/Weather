@@ -9,10 +9,11 @@ import com.shamardn.weather.databinding.FragmentHomeBinding
 import com.shamardn.weather.ui.adapters.HomeAdapter
 import com.shamardn.weather.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment: BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val layoutIdFragment = R.layout.fragment_home
     override val viewModel: HomeViewModel by viewModels()
     lateinit var homeAdapter: HomeAdapter
@@ -25,14 +26,27 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
     private fun collectHomeData() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.homeState.collect {
-                if (!it.isLoading){
-                    homeList.add(HomeItem(it.header, HomeItemType.TYPE_HEADER))
-                    homeList.add(HomeItem(it.hourList, HomeItemType.TYPE_HOUR))
-                    homeList.add(HomeItem(it.dailyList, HomeItemType.TYPE_DAY))
-                    homeList.add(HomeItem(it.details, HomeItemType.TYPE_DETAILS))
-                    setAdapter()
-                }
+                    viewModel.homeState.collectLatest {
+                        if (it.isSuccess) {
+                            homeList.add(HomeItem(it.currentWeatherUiState, HomeItemType.TYPE_HEADER))
+                            homeList.add(HomeItem(it.hourlyUiState, HomeItemType.TYPE_HOUR))
+                            homeList.add(HomeItem(it.dailyUiState, HomeItemType.TYPE_DAY))
+                            homeList.add(HomeItem(it.currentWeatherUiState, HomeItemType.TYPE_DETAILS))
+                            setAdapter()
+
+                            binding.loading.visibility = View.GONE
+                            binding.error.visibility = View.GONE
+                            binding.rvHome.visibility = View.VISIBLE
+
+                        } else if(it.isLoading) {
+                            binding.loading.visibility = View.VISIBLE
+                            binding.error.visibility = View.GONE
+                            binding.rvHome.visibility = View.GONE
+                        } else if(it.isFailed) {
+                            binding.error.visibility = View.VISIBLE
+                            binding.loading.visibility = View.GONE
+                            binding.rvHome.visibility = View.GONE
+                        }
             }
         }
     }
