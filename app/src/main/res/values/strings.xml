@@ -9,4 +9,6 @@
     <string name="pressure">Pressure</string>
     <string name="icon_desc">icon of weather status</string>
     <string name="city_holder">Cairo</string>
+    <string name="page_title">Weather</string>
+    <string name="search">search</string>
 </resources>
