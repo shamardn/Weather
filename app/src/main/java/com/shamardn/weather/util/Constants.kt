@@ -6,4 +6,6 @@ object Constants {
     const val URL_IMAGE = "https://openweathermap.org/img/w/"
     const val IMAGE_EXTENSION = ".png"
 
+    const val PERMISSION_REQUEST_ACCESS_LOCATION = 100
+
 }
