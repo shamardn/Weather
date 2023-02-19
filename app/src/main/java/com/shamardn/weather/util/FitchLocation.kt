@@ -18,18 +18,18 @@ import javax.inject.Inject
 
 
 class FitchLocation @Inject constructor(
-    private val activity: MainActivity
+    private val activity: MainActivity,
     ) {
     private val fusedLocationProviderClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
     private var longitude = 0.0
     private var latitude = 0.0
 
-    private fun setLatitude(lat: String){
-        latitude = lat.toDouble()
+    private fun setLatitude(lat: Double){
+        latitude = lat
     }
 
-    private fun setLongitude(long: String){
-        longitude = long.toDouble()
+    private fun setLongitude(long: Double){
+        longitude = long
     }
 
     fun getCityName(): String {
@@ -74,8 +74,8 @@ class FitchLocation @Inject constructor(
                     if (location == null) {
                         Toast.makeText(activity, "NULL Received" , Toast.LENGTH_SHORT).show()
                     }else {
-                        setLongitude(location.longitude.toString())
-                        setLatitude(location.latitude.toString())
+                        setLongitude(location.longitude)
+                        setLatitude(location.latitude)
                     }
                 }
             } else {
