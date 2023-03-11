@@ -1,5 +1,6 @@
 package com.shamardn.weather.util
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -11,16 +12,11 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.shamardn.weather.ui.main.MainActivity
 import com.shamardn.weather.util.Constants.PERMISSION_REQUEST_ACCESS_LOCATION
 import java.util.*
-import javax.inject.Inject
 
 
-class FitchLocation @Inject constructor(
-    private val activity: MainActivity,
-    ) {
-    private val fusedLocationProviderClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
+object FitchLocation {
     private var longitude = 0.0
     private var latitude = 0.0
 
@@ -32,13 +28,17 @@ class FitchLocation @Inject constructor(
         longitude = long
     }
 
-    fun getCityName(): String {
+    fun getLongitude() = longitude.toString()
+
+    fun getLatitude() = latitude.toString()
+
+    fun getCityName(activity: Activity): String {
         if (latitude != 0.0 && longitude != 0.0)
-        return getCity(latitude,longitude)
-        return getCity(27.25,33.82)
+        return getCity(activity, latitude,longitude)
+        return getCity(activity, 15.25,30.82)
     }
 
-    private fun getCity(lat: Double,long: Double): String{
+    private fun getCity(activity: Activity,lat: Double,long: Double): String{
         var cityName: String?
         val geoCoder = Geocoder(activity, Locale.getDefault())
         val address = geoCoder.getFromLocation(lat, long,1)
@@ -52,13 +52,10 @@ class FitchLocation @Inject constructor(
         return cityName.toString()
     }
 
-    init {
-        getCurrentLocation()
-    }
-
-    fun getCurrentLocation() {
-        if (checkPermissions()) {
-            if (isLocationEnabled()) {
+    fun getCurrentLocation(activity: Activity) {
+        val fusedLocationProviderClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
+        if (checkPermissions(activity)) {
+            if (isLocationEnabled(activity)) {
                 if (ActivityCompat.checkSelfPermission(activity,
                         android.Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED
@@ -66,7 +63,7 @@ class FitchLocation @Inject constructor(
                         android.Manifest.permission.ACCESS_COARSE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED
                 ) {
-                    requestPermission()
+                    requestPermission(activity)
                     return
                 }
                 fusedLocationProviderClient.lastLocation.addOnCompleteListener(activity) { task ->
@@ -83,18 +80,18 @@ class FitchLocation @Inject constructor(
                 activity.startActivity(intent)
             }
         } else {
-            requestPermission()
+            requestPermission(activity)
         }
     }
 
-    private fun checkPermissions(): Boolean {
+    private fun checkPermissions(activity: Activity): Boolean {
         return (ActivityCompat.checkSelfPermission(activity,
             android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(activity,
             android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
     }
 
-    private fun requestPermission() {
+    private fun requestPermission(activity: Activity) {
         ActivityCompat.requestPermissions(
             activity, arrayOf(
                 android.Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -103,7 +100,7 @@ class FitchLocation @Inject constructor(
         )
     }
 
-    private fun isLocationEnabled(): Boolean {
+    private fun isLocationEnabled(activity: Activity): Boolean {
         val locationManager: LocationManager = activity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER)
