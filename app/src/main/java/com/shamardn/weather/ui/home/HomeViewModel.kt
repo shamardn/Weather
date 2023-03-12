@@ -1,7 +1,10 @@
 package com.shamardn.weather.ui.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.shamardn.weather.data.local.AppConfiguration
 import com.shamardn.weather.domain.usecase.FetchWeatherDetails
 import com.shamardn.weather.ui.home.mapper.WeatherUiStateMapper
 import com.shamardn.weather.ui.home.uistate.WeatherUiState
@@ -16,11 +19,35 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val fetchWeatherDetails: FetchWeatherDetails,
     private val weatherUiStateMapper: WeatherUiStateMapper,
+    private val appConfiguration: AppConfiguration,
 ) : ViewModel() {
     private val _homeUiState = MutableStateFlow(WeatherUiState())
     val homeState = _homeUiState.asStateFlow()
+
+    private val _latitude = MutableLiveData<Double>()
+    val latitude: LiveData<Double> = _latitude
+
+    private val _longitude = MutableLiveData<Double>()
+    val longitude: LiveData<Double> = _longitude
+
     init {
         getHomeData()
+        getLocation()
+    }
+
+    private fun getLocation() {
+        viewModelScope.launch {
+            _longitude.postValue(appConfiguration.getLongitude())
+            _latitude.postValue(appConfiguration.getLatitude())
+        }
+    }
+
+    suspend fun saveLongitude(longitude: Double) {
+        appConfiguration.saveLongitude(longitude)
+    }
+
+    suspend fun saveLatitude(latitude: Double) {
+        appConfiguration.saveLatitude(latitude)
     }
 
     private fun getHomeData() {

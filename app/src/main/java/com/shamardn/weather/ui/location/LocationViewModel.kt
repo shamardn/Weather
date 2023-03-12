@@ -1,11 +1,11 @@
 package com.shamardn.weather.ui.location
 
-import android.app.Activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.shamardn.weather.data.local.AppConfiguration
-import com.shamardn.weather.util.FitchLocation
+import com.shamardn.weather.util.Event
+import com.shamardn.weather.util.postEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -14,15 +14,10 @@ class LocationViewModel @Inject constructor(
     private val appConfiguration: AppConfiguration,
 ) : ViewModel() {
 
-    private var _city = MutableLiveData("Cairo")
-    val city: LiveData<String> = _city
+    private val _navigateToHome = MutableLiveData<Event<Boolean>>()
+    val navigateToHome: LiveData<Event<Boolean>> get() = _navigateToHome
 
     init {
-
-    }
-
-    fun findLocation(activity: Activity) {
-        FitchLocation.getCurrentLocation(activity)
     }
 
     suspend fun saveLongitude(longitude: Double) {
@@ -33,5 +28,7 @@ class LocationViewModel @Inject constructor(
         appConfiguration.saveLatitude(latitude)
     }
 
-
+    fun onStartClick() {
+        _navigateToHome.postEvent(true)
+    }
 }
