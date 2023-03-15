@@ -11,7 +11,6 @@ class CurrentWeatherUiStateMapper @Inject constructor(
 ): Mapper<CurrentWeather, CurrentWeatherUiState>() {
     override fun map(input: CurrentWeather): CurrentWeatherUiState {
         return CurrentWeatherUiState(
-            timeZone =  "",
             date = input.date.formatDate("h:mm"),
             feelsLike = "${input.feelsLike.toInt()}°C",
             humidity = "${input.humidity}%",

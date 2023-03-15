@@ -82,7 +82,6 @@ class HomeViewModel @Inject constructor(
                         currentWeatherUiState = weatherDetails.currentWeatherUiState,
                         hourlyUiState = weatherDetails.hourlyUiState,
                         dailyUiState = weatherDetails.dailyUiState,
-                        timezone = weatherDetails.timezone,
                         isSuccess = true,
                         isLoading = false,
                         isFailed = false,

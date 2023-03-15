@@ -2,7 +2,6 @@ package com.shamardn.weather.ui.home
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.shamardn.weather.R
@@ -34,10 +33,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun onResume() {
         super.onResume()
         viewModel.latitude.observe(this) {
-            Toast.makeText(requireContext(), "lat = $it", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), "lat = $it", Toast.LENGTH_SHORT).show()
         }
         viewModel.longitude.observe(this) {
-            Toast.makeText(requireContext(),"lon = $it", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(),"lon = $it", Toast.LENGTH_SHORT).show()
         }
     }
 

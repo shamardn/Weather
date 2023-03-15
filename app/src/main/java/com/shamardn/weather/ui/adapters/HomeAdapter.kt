@@ -16,9 +16,11 @@ import com.shamardn.weather.ui.home.HomeViewModel
 import com.shamardn.weather.ui.home.uistate.CurrentWeatherUiState
 import com.shamardn.weather.ui.home.uistate.DailyWeatherUiState
 import com.shamardn.weather.ui.home.uistate.HourlyWeatherUiState
+import javax.inject.Inject
 
-class HomeAdapter(private val items: List<HomeItem<Any>>, private val homeViewModel: HomeViewModel) :
-    RecyclerView.Adapter<HomeAdapter.BaseViewHolder>() {
+class HomeAdapter @Inject constructor(
+    private val items: List<HomeItem<Any>>, private val homeViewModel: HomeViewModel
+    ): RecyclerView.Adapter<HomeAdapter.BaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
