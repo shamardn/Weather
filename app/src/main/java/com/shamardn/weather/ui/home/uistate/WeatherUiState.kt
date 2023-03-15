@@ -6,7 +6,7 @@ data class WeatherUiState(
     val isFailed : Boolean = false,
     val isSuccess : Boolean = false,
     val isEmpty: Boolean = true,
-    val currentWeatherUiState: CurrentWeatherUiState = CurrentWeatherUiState("","", "", "", "", "","","",""),
+    val currentWeatherUiState: CurrentWeatherUiState = CurrentWeatherUiState("", "", "", "", "", "","","","", ""),
     val dailyUiState: List<DailyWeatherUiState> = emptyList(),
     val hourlyUiState: List<HourlyWeatherUiState> = emptyList(),
     val lat: Double = 0.0,

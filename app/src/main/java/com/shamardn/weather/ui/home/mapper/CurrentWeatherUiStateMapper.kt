@@ -6,9 +6,12 @@ import com.shamardn.weather.ui.home.uistate.CurrentWeatherUiState
 import com.shamardn.weather.util.formatDate
 import javax.inject.Inject
 
-class CurrentWeatherUiStateMapper @Inject constructor(): Mapper<CurrentWeather, CurrentWeatherUiState>() {
+class CurrentWeatherUiStateMapper @Inject constructor(
+
+): Mapper<CurrentWeather, CurrentWeatherUiState>() {
     override fun map(input: CurrentWeather): CurrentWeatherUiState {
         return CurrentWeatherUiState(
+            timeZone =  "",
             date = input.date.formatDate("h:mm"),
             feelsLike = "${input.feelsLike.toInt()}°C",
             humidity = "${input.humidity}%",

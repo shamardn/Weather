@@ -1,6 +1,7 @@
 package com.shamardn.weather.ui.home.uistate
 
 data class CurrentWeatherUiState(
+    val timeZone: String,
     val date: String,
     val feelsLike: String,
     val humidity: String,

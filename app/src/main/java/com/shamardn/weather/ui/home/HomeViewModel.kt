@@ -24,6 +24,9 @@ class HomeViewModel @Inject constructor(
     private val _homeUiState = MutableStateFlow(WeatherUiState())
     val homeState = _homeUiState.asStateFlow()
 
+    private val _timeZone = MutableLiveData<String>()
+    val timeZone: LiveData<String> = _timeZone
+
     private val _latitude = MutableLiveData<Double>()
     val latitude: LiveData<Double> = _latitude
 
@@ -33,6 +36,7 @@ class HomeViewModel @Inject constructor(
     init {
         getHomeData()
         getLocation()
+        getTimeZone()
     }
 
     private fun getLocation() {
@@ -50,6 +54,19 @@ class HomeViewModel @Inject constructor(
         appConfiguration.saveLatitude(latitude)
     }
 
+    private suspend fun saveTimeZone(city: String) {
+        _timeZone.postValue(city)
+        appConfiguration.saveTimeZone(city)
+    }
+
+     private fun getTimeZone(){
+         viewModelScope.launch {
+             if (appConfiguration.getTimeZone() != null) {
+                 _timeZone.postValue(appConfiguration.getTimeZone())
+             }
+         }
+    }
+
     private fun getHomeData() {
         _homeUiState.update { it.copy(isLoading = true) }
         getWeatherDetails()
@@ -59,11 +76,13 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val weatherDetails = weatherUiStateMapper.map(fetchWeatherDetails())
+                saveTimeZone(weatherDetails.timezone)
                 _homeUiState.update {
                     it.copy(
                         currentWeatherUiState = weatherDetails.currentWeatherUiState,
                         hourlyUiState = weatherDetails.hourlyUiState,
                         dailyUiState = weatherDetails.dailyUiState,
+                        timezone = weatherDetails.timezone,
                         isSuccess = true,
                         isLoading = false,
                         isFailed = false,

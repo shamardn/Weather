@@ -94,6 +94,7 @@ class LocationFragment @Inject constructor(
 
     private fun handleEvents() {
         viewModel.navigateToHome.observeEvent(viewLifecycleOwner) {
+            getCurrentLocation()
             findNavController().navigate(R.id.action_locationFragment_to_homeFragment)
         }
     }

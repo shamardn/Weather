@@ -12,11 +12,12 @@ import com.shamardn.weather.databinding.ListDaysBinding
 import com.shamardn.weather.databinding.ListHoursBinding
 import com.shamardn.weather.ui.home.HomeItem
 import com.shamardn.weather.ui.home.HomeItemType
+import com.shamardn.weather.ui.home.HomeViewModel
 import com.shamardn.weather.ui.home.uistate.CurrentWeatherUiState
 import com.shamardn.weather.ui.home.uistate.DailyWeatherUiState
 import com.shamardn.weather.ui.home.uistate.HourlyWeatherUiState
 
-class HomeAdapter(private val items: List<HomeItem<Any>>) :
+class HomeAdapter(private val items: List<HomeItem<Any>>, private val homeViewModel: HomeViewModel) :
     RecyclerView.Adapter<HomeAdapter.BaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -69,6 +70,7 @@ class HomeAdapter(private val items: List<HomeItem<Any>>) :
     private fun bindHeader(holder: HeaderViewHolder, position: Int) {
         val header = items[position].item as CurrentWeatherUiState
         holder.binding.setVariable(BR.item, header)
+        holder.binding.setVariable(BR.viewModel, homeViewModel)
     }
 
     private fun bindDays(holder: DaysViewHolder, position: Int) {

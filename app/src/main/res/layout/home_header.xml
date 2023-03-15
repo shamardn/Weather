@@ -7,6 +7,10 @@
         <variable
             name="item"
             type="com.shamardn.weather.ui.home.uistate.CurrentWeatherUiState" />
+
+    <variable
+        name="viewModel"
+        type="com.shamardn.weather.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:text="@string/city_holder"
+            tools:text="@string/city_holder"
+            android:text="@{viewModel.timeZone}"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
