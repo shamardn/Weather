@@ -9,7 +9,7 @@ class FetchWeatherDetails @Inject constructor(
     private val weatherRepository: WeatherRepository,
     private val weatherMapper: WeatherMapper,
 ) {
-    suspend operator fun invoke(): Weather {
-        return weatherMapper.map(weatherRepository.getWeatherDetails())
+    suspend operator fun invoke(lat: Double, lon: Double): Weather {
+        return weatherMapper.map(weatherRepository.getWeatherDetails(lat, lon))
     }
 }

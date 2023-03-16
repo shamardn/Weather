@@ -9,6 +9,7 @@ import com.shamardn.weather.domain.usecase.FetchWeatherDetails
 import com.shamardn.weather.ui.home.mapper.WeatherUiStateMapper
 import com.shamardn.weather.ui.home.uistate.WeatherUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -34,8 +35,8 @@ class HomeViewModel @Inject constructor(
     val longitude: LiveData<Double> = _longitude
 
     init {
-        getHomeData()
         getLocation()
+        getHomeData()
         getTimeZone()
     }
 
@@ -74,8 +75,9 @@ class HomeViewModel @Inject constructor(
 
     private fun getWeatherDetails() {
         viewModelScope.launch {
+            delay(1000)
             try {
-                val weatherDetails = weatherUiStateMapper.map(fetchWeatherDetails())
+                val weatherDetails = weatherUiStateMapper.map(fetchWeatherDetails(appConfiguration.getLatitude()!!, appConfiguration.getLongitude()!!))
                 saveTimeZone(weatherDetails.timezone)
                 _homeUiState.update {
                     it.copy(

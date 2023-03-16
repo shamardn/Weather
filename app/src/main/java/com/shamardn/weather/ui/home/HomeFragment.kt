@@ -30,6 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         collectHomeData()
     }
 
+/*
     override fun onResume() {
         super.onResume()
         viewModel.latitude.observe(this) {
@@ -39,7 +40,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 //            Toast.makeText(requireContext(),"lon = $it", Toast.LENGTH_SHORT).show()
         }
     }
-
+*/
     private fun collectHomeData() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.homeState.collectLatest {
