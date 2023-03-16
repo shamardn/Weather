@@ -11,8 +11,6 @@ class WeatherInterceptor @Inject constructor(): Interceptor {
             .url
             .newBuilder()
             .addQueryParameter(APP_ID, API_KEY)
-            .addQueryParameter(LAT, CAIRO_LAT)
-            .addQueryParameter(LON, CAIRO_LON)
             .addQueryParameter(UNITS, UNIT_METRIC)
             .build()
         return chain.proceed((chain.request().newBuilder().url(response).build()))
