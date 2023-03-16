@@ -63,7 +63,6 @@ class LocationFragment @Inject constructor(
                             Toast.makeText(activity, "NULL Received" , Toast.LENGTH_SHORT).show()
                         }else {
                             lifecycleScope.launch {
-                                Toast.makeText(requireContext()," lat == ${location.latitude} lon == ${location.longitude}",Toast.LENGTH_SHORT).show()
                                 viewModel.saveLatitude(location.latitude)
                                 viewModel.saveLongitude(location.longitude)
                             }
